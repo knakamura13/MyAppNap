@@ -27,14 +27,8 @@ def get_pid(name):
         return None
 
 # if script invoked with an argument, use that as the pid
-desiredApp = 'asfjsadfjasdflkjasf'
-if len(sys.argv) > 1:
-    da = sys.argv[1]
-    if da == 'Terminal':
-        print 'Can\'t suspend Terminal, especially if you are calling from Terminal'
-    else:
-        desiredApp = da
 
+desiredApp = raw_input("Select an app: ")
 pids = get_pid(desiredApp)
 
 if pids:
@@ -58,6 +52,7 @@ try:
                 stop = False
                 if pids:
                     print "Stopping", desiredApp
+                    print "Use cntr-c to stop napping."
                     for pid in pids:
                         subprocess.Popen("kill -STOP " + pid, shell=True)
         sleep(1)
